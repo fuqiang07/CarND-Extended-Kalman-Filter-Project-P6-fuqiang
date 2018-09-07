@@ -8,6 +8,15 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::vector;
 
+//debug
+#define USERDEBUG
+
+#ifdef USERDEBUG
+#define Debug(x) cout << x
+#else
+#define Debug(x)
+#endif
+
 /*
  * Constructor.
  */
@@ -24,12 +33,12 @@ FusionEKF::FusionEKF() {
 
   //measurement covariance matrix - laser
   R_laser_ << 0.0225, 0,
-        0, 0.0225;
+              0, 0.0225;
 
   //measurement covariance matrix - radar
   R_radar_ << 0.09, 0, 0,
-        0, 0.0009, 0,
-        0, 0, 0.09;
+              0, 0.0009, 0,
+              0, 0, 0.09;
 
   /**
   TODO:
@@ -133,6 +142,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
     // done initializing, no need to predict or update
     is_initialized_ = true;
+
+    //debug info
+    Debug( << "[EKF]: Initialization Completed! ====================" << endl);
+
     return;
   }
 
@@ -167,6 +180,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
   ekf_.Predict();
 
+  //debug info
+  Debug( << "[EKF]: Prediction Completed! ====================" << endl);
+  Debug( << "[EKF]: x_ = \n" << ekf_.x_ << endl);
+  Debug( << "[EKF]: P_ = \n" << ekf_.P_ << endl);
+
   /*****************************************************************************
    *  Update
    ****************************************************************************/
@@ -189,6 +207,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     ekf_.R_ = R_laser_;
     ekf_.Update(measurement_pack.raw_measurements_);
   }
+
+  //debug info
+  Debug( << "[EKF]: Correction Completed! ====================" << endl);
 
   // print the output
   cout << "x_ = " << ekf_.x_ << endl;
