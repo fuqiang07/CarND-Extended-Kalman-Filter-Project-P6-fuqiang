@@ -1,10 +1,11 @@
 #include <math.h>
 #include "kalman_filter.h"
 
+using namespace std;
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
-using namespace std;
 
+/*
 //debug
 #define USERDEBUG
 
@@ -13,6 +14,7 @@ using namespace std;
 #else
 #define Debug(x)
 #endif
+*/
 
 // Please note that the Eigen library does not initialize
 // VectorXd or MatrixXd objects with zeros upon creation.

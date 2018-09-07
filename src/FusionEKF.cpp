@@ -8,6 +8,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::vector;
 
+
 //debug
 #define USERDEBUG
 
@@ -16,6 +17,7 @@ using std::vector;
 #else
 #define Debug(x)
 #endif
+
 
 /*
  * Constructor.
