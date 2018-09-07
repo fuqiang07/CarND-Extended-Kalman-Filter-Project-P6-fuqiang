@@ -1,5 +1,6 @@
 #include <math.h>
 #include "kalman_filter.h"
+#include <iostream> //.for std
 
 using namespace std;
 using Eigen::MatrixXd;
@@ -10,7 +11,7 @@ using Eigen::VectorXd;
 #define USERDEBUG
 
 #ifdef USERDEBUG
-#define Debug(x) std::cout << x
+#define Debug(x) cout << x
 #else
 #define Debug(x)
 #endif
