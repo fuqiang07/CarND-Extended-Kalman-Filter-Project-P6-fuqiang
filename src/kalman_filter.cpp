@@ -3,6 +3,7 @@
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+using namespace std;
 
 //debug
 #define USERDEBUG
