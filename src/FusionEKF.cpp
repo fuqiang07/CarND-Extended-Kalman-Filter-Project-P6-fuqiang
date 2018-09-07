@@ -70,10 +70,10 @@ FusionEKF::FusionEKF() {
 
   //state covariance matrix P_ for class KalmanFilter ekf_
   ekf_.P_ = MatrixXd(4, 4);
-  ekf_.P_ << 100, 0, 0, 0,
-             0, 100, 0, 0,
-             0, 0, 1000, 0,
-             0, 0, 0, 1000;
+  ekf_.P_ << 1, 0, 0, 0,
+             0, 1, 0, 0,
+             0, 0, 1, 0,
+             0, 0, 0, 1;
 
   //process noise covariance matrix Q_ for class KalmanFilter ekf_
   ekf_.Q_ = MatrixXd(4, 4);
