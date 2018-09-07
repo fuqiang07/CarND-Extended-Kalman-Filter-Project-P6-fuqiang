@@ -5,16 +5,16 @@ using namespace std;
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
-/*
+
 //debug
 #define USERDEBUG
 
 #ifdef USERDEBUG
-#define Debug(x) cout << x
+#define Debug(x) std::cout << x
 #else
 #define Debug(x)
 #endif
-*/
+
 
 // Please note that the Eigen library does not initialize
 // VectorXd or MatrixXd objects with zeros upon creation.
