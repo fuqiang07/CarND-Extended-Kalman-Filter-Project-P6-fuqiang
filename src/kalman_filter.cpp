@@ -71,7 +71,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   */
   //debug info
   Debug( "[kalman_filter]: Update for RADAR " << endl);
-  Debug( "[kalman_filter]: x_ = " << ekf_.x_ << endl);
+  Debug( "[kalman_filter]: x_ = " << x_ << endl);
 
   float px = x_(0);
   float py = x_(1);
