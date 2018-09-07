@@ -8,7 +8,7 @@ using Eigen::VectorXd;
 
 
 //debug
-#define USERDEBUG
+//#define USERDEBUG
 
 #ifdef USERDEBUG
 #define Debug(x) cout << x
