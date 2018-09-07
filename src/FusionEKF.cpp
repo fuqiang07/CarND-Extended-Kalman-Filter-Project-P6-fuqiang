@@ -70,8 +70,8 @@ FusionEKF::FusionEKF() {
 
   //state covariance matrix P_ for class KalmanFilter ekf_
   ekf_.P_ = MatrixXd(4, 4);
-  ekf_.P_ << 0.1, 0, 0, 0,
-             0, 0.1, 0, 0,
+  ekf_.P_ << 1, 0, 0, 0,
+             0, 1, 0, 0,
              0, 0, 100, 0,
              0, 0, 0, 100;
 
@@ -126,6 +126,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       float vy = rho_dot * sin(phi);
 
       ekf_.x_ << px, py, vx, vy;
+
+      ekf_.P_ << 0.1, 0, 0, 0,
+                 0, 0.1, 0, 0,
+                 0, 0, 10, 0,
+                 0, 0, 0, 10;
     }
     else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
       /**
@@ -137,6 +142,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       float vy = 0.0f;
 
       ekf_.x_ << px, py, vx, vy;
+
+      ekf_.P_ << 1, 0, 0, 0,
+                 0, 1, 0, 0,
+                 0, 0, 100, 0,
+                 0, 0, 0, 100;
     }
 
     // initialize the previous_timestamp
