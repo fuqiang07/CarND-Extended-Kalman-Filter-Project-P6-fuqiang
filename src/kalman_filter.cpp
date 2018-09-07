@@ -97,7 +97,10 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   Debug( "[kalman_filter]: z_pred = " << z_pred << endl);
 
   VectorXd y = z - z_pred;
-  while((y(1) > M_PI) || (y(1) < M_PI)){
+  Debug( "[kalman_filter]: y = " << y << endl);
+  Debug( "[kalman_filter]: M_PI = " << M_PI << endl);
+
+  while((y(1) > M_PI) || (y(1) < -M_PI)){
     if(y(1) > M_PI){
       y(1) -= 2.0f * M_PI;
     }
