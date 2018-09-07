@@ -195,16 +195,37 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Update the state and covariance matrices.
    */
 
+  //debug info
+  Debug( "[EKF]: Correction Begin: ====================" << endl);
+
   if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
     // Radar updates
+
+    //debug info
+    Debug( "[EKF]: Sensor Type = RADAR ~~~~~~~~~~" << endl);
+
     ekf_.H_ = tools.CalculateJacobian(ekf_.x_);
     ekf_.R_ = R_radar_;
+
+    //debug info
+    Debug( "[EKF]: H_ = \n" << ekf_.H_ << endl);
+    Debug( "[EKF]: R_ = \n" << ekf_.R_ << endl);
+
     ekf_.UpdateEKF(measurement_pack.raw_measurements_);
 
   } else {
     // Laser updates
+
+    //debug info
+    Debug( "[EKF]: Sensor Type = LASER ~~~~~~~~~" << endl);
+
     ekf_.H_ = H_laser_;
     ekf_.R_ = R_laser_;
+
+    //debug info
+    Debug( "[EKF]: H_ = \n" << ekf_.H_ << endl);
+    Debug( "[EKF]: R_ = \n" << ekf_.R_ << endl);
+
     ekf_.Update(measurement_pack.raw_measurements_);
   }
 
