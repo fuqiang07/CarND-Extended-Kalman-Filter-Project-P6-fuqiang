@@ -70,8 +70,8 @@ FusionEKF::FusionEKF() {
 
   //state covariance matrix P_ for class KalmanFilter ekf_
   ekf_.P_ = MatrixXd(4, 4);
-  ekf_.P_ << 1, 0, 0, 0,
-             0, 1, 0, 0,
+  ekf_.P_ << 10, 0, 0, 0,
+             0, 10, 0, 0,
              0, 0, 100, 0,
              0, 0, 0, 100;
 
