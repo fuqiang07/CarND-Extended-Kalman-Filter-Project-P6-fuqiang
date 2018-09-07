@@ -144,7 +144,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     is_initialized_ = true;
 
     //debug info
-    Debug( "[EKF]: Initialization Completed! ====================" << endl);
+    Debug( "[FusionEKF]: Initialization Completed! ====================" << endl);
 
     return;
   }
@@ -181,9 +181,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   ekf_.Predict();
 
   //debug info
-  Debug( "[EKF]: Prediction Completed! ====================" << endl);
-  Debug( "[EKF]: x_ = \n" << ekf_.x_ << endl);
-  Debug( "[EKF]: P_ = \n" << ekf_.P_ << endl);
+  Debug( "[FusionEKF]: Prediction Completed! ====================" << endl);
+  Debug( "[FusionEKF]: x_ = " << ekf_.x_ << endl);
+  Debug( "[FusionEKF]: P_ = " << ekf_.P_ << endl);
 
   /*****************************************************************************
    *  Update
@@ -196,20 +196,20 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
    */
 
   //debug info
-  Debug( "[EKF]: Correction Begin: ====================" << endl);
+  Debug( "[FusionEKF]: Correction Begin: ====================" << endl);
 
   if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
     // Radar updates
 
     //debug info
-    Debug( "[EKF]: Sensor Type = RADAR ~~~~~~~~~~" << endl);
+    Debug( "[FusionEKF]: Sensor Type = RADAR ~~~~~~~~~~" << endl);
 
     ekf_.H_ = tools.CalculateJacobian(ekf_.x_);
     ekf_.R_ = R_radar_;
 
     //debug info
-    Debug( "[EKF]: H_ = \n" << ekf_.H_ << endl);
-    Debug( "[EKF]: R_ = \n" << ekf_.R_ << endl);
+    Debug( "[FusionEKF]: H_ = " << ekf_.H_ << endl);
+    Debug( "[FusionEKF]: R_ = " << ekf_.R_ << endl);
 
     ekf_.UpdateEKF(measurement_pack.raw_measurements_);
 
@@ -217,20 +217,20 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     // Laser updates
 
     //debug info
-    Debug( "[EKF]: Sensor Type = LASER ~~~~~~~~~" << endl);
+    Debug( "[FusionEKF]: Sensor Type = LASER ~~~~~~~~~" << endl);
 
     ekf_.H_ = H_laser_;
     ekf_.R_ = R_laser_;
 
     //debug info
-    Debug( "[EKF]: H_ = \n" << ekf_.H_ << endl);
-    Debug( "[EKF]: R_ = \n" << ekf_.R_ << endl);
+    Debug( "[FusionEKF]: H_ = " << ekf_.H_ << endl);
+    Debug( "[FusionEKF]: R_ = " << ekf_.R_ << endl);
 
     ekf_.Update(measurement_pack.raw_measurements_);
   }
 
   //debug info
-  Debug( "[EKF]: Correction Completed! ====================" << endl);
+  Debug( "[FusionEKF]: Correction Completed! ====================" << endl);
 
   // print the output
   cout << "x_ = " << ekf_.x_ << endl;
