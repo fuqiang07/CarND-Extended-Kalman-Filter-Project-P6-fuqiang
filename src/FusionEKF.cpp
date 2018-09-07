@@ -144,7 +144,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     is_initialized_ = true;
 
     //debug info
-    Debug( << "[EKF]: Initialization Completed! ====================" << endl);
+    Debug( "[EKF]: Initialization Completed! ====================" << endl);
 
     return;
   }
@@ -181,9 +181,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   ekf_.Predict();
 
   //debug info
-  Debug( << "[EKF]: Prediction Completed! ====================" << endl);
-  Debug( << "[EKF]: x_ = \n" << ekf_.x_ << endl);
-  Debug( << "[EKF]: P_ = \n" << ekf_.P_ << endl);
+  Debug( "[EKF]: Prediction Completed! ====================" << endl);
+  Debug( "[EKF]: x_ = \n" << ekf_.x_ << endl);
+  Debug( "[EKF]: P_ = \n" << ekf_.P_ << endl);
 
   /*****************************************************************************
    *  Update
@@ -209,7 +209,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   }
 
   //debug info
-  Debug( << "[EKF]: Correction Completed! ====================" << endl);
+  Debug( "[EKF]: Correction Completed! ====================" << endl);
 
   // print the output
   cout << "x_ = " << ekf_.x_ << endl;
